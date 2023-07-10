@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from "react-redux";
 import {
   BsLightbulb,
   BsBasket2Fill,
@@ -6,7 +7,8 @@ import {
 } from "react-icons/bs";
 import {GiClothespin} from "react-icons/gi"
 const Navbar = () => {
-    const [color, setColor] = useState(false)
+  const [color, setColor] = useState(false)
+  const dispatch = useDispatch();
 
     useEffect(() => {
         const root = document.getElementById("root");
@@ -37,7 +39,7 @@ const Navbar = () => {
             <BsFillMoonStarsFill size={25} className="cursor-pointer" />
           )}
         </div>
-        <div className="relative">
+        <div onClick={() => dispatch({type:"DRAWER", payload: true})} className="relative">
           <BsBasket2Fill size={25} className="cursor-pointer" />
           <span className="absolute -top-2 -right-3 px-2 bg-red-600 text-white rounded-full text-sm">
             3
