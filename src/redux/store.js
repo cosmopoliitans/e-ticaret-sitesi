@@ -3,13 +3,21 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { drawerRaducer } from "./reducers/drawer"
 import { productsReducer, productsDetailReducer } from "./reducers/products";
+import {cardReducer} from "./reducers/card"
+import { searchReducer } from "./reducers/search";
 
-let initialState = {};
+
+const cardItems = JSON.parse(localStorage.getItem("cardItems")) || []
+let initialState = {
+  card: {cardItems}
+};
 
 const reducers = combineReducers({
   drawer: drawerRaducer,
   products: productsReducer,
-  product: productsDetailReducer
+  product: productsDetailReducer,
+  card: cardReducer,
+  search: searchReducer
 });
 
 const store = createStore(

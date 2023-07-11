@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { productsActionDetail } from "../redux/actions/products"
+import { productsActionDetail } from "../redux/actions/products";
+import {productsCard} from "../redux/actions/card"
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 
 const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { products } = useSelector(state => state.product);
-  const [count, setCount] = useState(0)
+  const { products } = useSelector((state) => state.product);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     dispatch(productsActionDetail(id));
-  }, [dispatch])
+  }, [dispatch]);
 
   console.log("product", products);
-  const increment = (stock) => { 
+  const increment = (stock) => {
     if (count <= stock) {
-      setCount(count + 1)
+      setCount(count + 1);
     }
-  }
+  };
   const decrement = () => {
-     if (count > 0) {
-       setCount(count - 1);
-     }
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+  const addCard = () => {
+    dispatch(productsCard(id, count));
+    dispatch({type: "DRAWER", payload: true})
   }
   return (
     <div className="w-full flex items-center justify-center space-x-8">
@@ -35,7 +40,7 @@ const Details = () => {
         <div className="opacity-70">
           Rate: {products?.rating?.rate} - Stock: {products?.rating?.count}
         </div>
-        <div className="font-bold text-lg">Price: {products?.price}</div>
+        <div className="font-bold text-lg">Price: ${products?.price}</div>
 
         <div className="flex items-center space-x-4">
           <CgMathMinus
@@ -50,7 +55,9 @@ const Details = () => {
             size={30}
           />
         </div>
-        <button className="p-3 w-full bg-indigo-600 text-center rounded-lg text-white text-lg">Sepete Ekle</button>
+        <button onClick={addCard} className="p-3 w-full bg-indigo-600 text-center rounded-lg text-white text-lg">
+          Sepete Ekle
+        </button>
       </div>
     </div>
   );
