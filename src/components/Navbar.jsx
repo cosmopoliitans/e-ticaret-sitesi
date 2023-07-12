@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   BsLightbulb,
@@ -16,7 +17,7 @@ const Navbar = () => {
     useEffect(() => {
         const root = document.getElementById("root");
         if (color) {
-            root.style.backgroundColor = "black";
+            root.style.backgroundColor = "rgb(17 24 39)";
             root.style.color = "gray";
         } else {
             root.style.backgroundColor = "white";
@@ -29,10 +30,12 @@ const Navbar = () => {
     }
   }
   return (
-    <div className="flex items-center justify-between px-3 h-28">
+    <div className="flex items-center justify-between px-8 h-28">
       <div className="flex items-center">
-        <GiClothespin size={25} className="cursor-pointer" />
-        <span className="text-2xl font-bold tracking-wider ml-2">MANDAL</span>
+        <Link to="/" className="flex items-center">
+          <GiClothespin size={25} className="cursor-pointer" />
+          <span className="text-2xl font-bold tracking-wider ml-2">MANDAL</span>
+        </Link>
       </div>
       <div className="flex items-center space-x-4">
         <input

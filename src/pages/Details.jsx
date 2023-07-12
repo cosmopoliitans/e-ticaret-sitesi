@@ -9,7 +9,7 @@ const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.product);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     dispatch(productsActionDetail(id));
@@ -31,7 +31,7 @@ const Details = () => {
     dispatch({type: "DRAWER", payload: true})
   }
   return (
-    <div className="w-full flex items-center justify-center space-x-8">
+    <div className="w-2/3 m-20 flex items-center justify-center space-x-8">
       <img className="w-1/3" src={products?.image} alt="" />
       <div className="w-2/3 space-y-5">
         <div className="font-bold text-xl">{products?.title}</div>
@@ -40,7 +40,7 @@ const Details = () => {
         <div className="opacity-70">
           Rate: {products?.rating?.rate} - Stock: {products?.rating?.count}
         </div>
-        <div className="font-bold text-lg">Price: ${products?.price}</div>
+        <div className="text-orange-500 font-bold text-lg">Price: ${products?.price}</div>
 
         <div className="flex items-center space-x-4">
           <CgMathMinus
@@ -55,8 +55,8 @@ const Details = () => {
             size={30}
           />
         </div>
-        <button onClick={addCard} className="p-3 w-full bg-indigo-600 text-center rounded-lg text-white text-lg">
-          Sepete Ekle
+        <button onClick={addCard} className="p-3 w-full bg-blue-700 text-center rounded-lg text-white text-lg">
+          Add To Basket
         </button>
       </div>
     </div>
